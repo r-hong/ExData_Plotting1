@@ -23,10 +23,13 @@ for (i in 1:length(data2$Date)){
 print(dayindex)
 
 #plotting
-png(file="plot2")
+png(file="plot3.png")
 x <- 1:length(data2$Date)
-plot(x[1:3000],data2$Global_active_power[1:3000],type="n",xaxt="n",xlab="",ylab="Global Active Power (kilowatts)")
-line(x[1:3000],data2$Global_active_power[1:3000],type="l",xaxt="n",xlab="",ylab="Global Active Power (kilowatts)")
+plot(x[1:3000],data2$Sub_metering_1[1:3000],type="n",xaxt="n",xlab="",ylab="Energy sub metering")
+lines(x[1:3000],data2$Sub_metering_1[1:3000],type="l",xaxt="n",xlab="",ylab="Energy sub metering",col="black")
+lines(x[1:3000],data2$Sub_metering_2[1:3000],type="l",xaxt="n",xlab="",ylab="Energy sub metering",col="red")
+lines(x[1:3000],data2$Sub_metering_3[1:3000],type="l",xaxt="n",xlab="",ylab="Energy sub metering",col="blue")
+legend("topright",cex=0.9,pt.cex=1,c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=c(1,1,1),lwd=c(2.5,2.5,2.5),col=c("black","red","blue"))
 daylabels02 <- unique(weekdays(data2$Date,abbreviate=TRUE))
 axis(1,at=dayindex,labels=daylabels02)
 dev.off()
